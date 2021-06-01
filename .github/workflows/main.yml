@@ -5,13 +5,17 @@ on: [repository_dispatch]
 jobs:
   check-plugin:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+      steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+      - name: Checkout submodules
+        uses: plugins-verification/git-checkout-submodule-action@master
+      - uses: actions/checkout@${{ github.event.check_suite[head_branch] }}
         with:
           path: plugins/${{ github.event.client_payload.repository }}
       - name: Event Information
         run: |
-          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
+          echo "Event '${{ github.event.check_suite[head_branch] }}' received from '${{ github.event.client_payload.repository }}'"
       - name: RESPONSE - Dispatch response to received call
         if: github.event.action == 'call'
         run: |
