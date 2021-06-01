@@ -6,13 +6,13 @@ jobs:
   check-plugin:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          path: plugins/${{ github.repository.name}}
       - name: Event Information
         run: |
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
       - name: RESPONSE - Dispatch response to received call
-        uses: actions/checkout@v2
-        with:
-         path: plugins/${{ github.repository.name}}
         if: github.event.action == 'call'
         run: |
           curl -X POST https://api.github.com/repos/RoadieHQ/backstage-plugin-github-insights/dispatches \
