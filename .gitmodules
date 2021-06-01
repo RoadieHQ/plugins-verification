@@ -1,0 +1,3 @@
+[submodule "plugins/backstage-plugin-github-insights"]
+	path = plugins/backstage-plugin-github-insights
+	url = https://github.com/RoadieHQ/backstage-plugin-github-insights.git
