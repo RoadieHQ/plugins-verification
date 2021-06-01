@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          path: plugins/backstage-github-insights
+          path: plugins/${{ github.event.client_payload.repository }}
       - name: Event Information
         run: |
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
@@ -26,7 +26,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
         if: github.event.action == 'call'
       - run: yarn install
-      - run: yarn run tsc
       - run: yarn run lint
       - run: yarn run build
       - run: yarn test
