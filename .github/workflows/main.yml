@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Event Information
         run: |
-          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}' and branch name is '${{ github.event.inputs.branch }}'"
+          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}' and branch name is '${{ github.event.client_payload.ref }}'"
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
