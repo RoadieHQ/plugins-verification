@@ -13,7 +13,7 @@ jobs:
           submodules: 'true'
       - name: Checkout submodules
         uses: plugins-verification/git-checkout-submodule-action@master
-      - uses: actions/checkout@${{ github.event.check_suite[head_branch] }}
+      - uses: actions/checkout@$v2
         with:
           path: plugins/${{ github.event.client_payload.repository }}
       - name: Event Information
