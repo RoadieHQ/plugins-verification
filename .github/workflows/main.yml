@@ -15,4 +15,4 @@ jobs:
         run: git submodule update --init --recursive
       - name: Event Information
         run: |
-        echo "Event '${{ github.event.client_payload.repository }}' received from '${{ github.event.client_payload.repository }}'"
+         echo "Event '${{ github.event.client_payload.repository }}' received from '${{ github.event.client_payload.repository }}'"
