@@ -12,10 +12,7 @@ jobs:
         with:
           submodules: 'true'
       - name: Checkout submodules
-        uses: plugins-verification/git-checkout-submodule-action@master
-      - uses: actions/checkout@$v2
-        with:
-          path: plugins/${{ github.event.client_payload.repository }}
+        run: git submodule update --init --recursive
       - name: Event Information
         run: |
-          echo "Event '${{ github.event.client_payload.repository }}' received from '${{ github.event.client_payload.repository }}'"
+        echo "Event '${{ github.event.client_payload.repository }}' received from '${{ github.event.client_payload.repository }}'"
