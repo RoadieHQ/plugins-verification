@@ -16,6 +16,6 @@ jobs:
         with:
           submodules: 'true'
       - name: Checkout branch in submodule
-        uses: textbook/git-checkout-submodule-action@'${{ github.event.client_payload.ref }}'
+        uses: textbook/git-checkout-submodule-action@irma
       - name: Checkout submodules
         run: git submodule update --init --recursive
