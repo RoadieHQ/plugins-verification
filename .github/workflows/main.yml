@@ -18,4 +18,4 @@ jobs:
           path: plugins/${{ github.event.client_payload.repository }}
       - name: Event Information
         run: |
-          echo "Event '${{ github.event.check_suite[head_branch] }}' received from '${{ github.event.client_payload.repository }}'"
+          echo "Event '${{ github.event.client_payload.repository }}' received from '${{ github.event.client_payload.repository }}'"
