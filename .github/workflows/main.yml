@@ -16,6 +16,6 @@ jobs:
         with:
           submodules: 'true'
       - name: Checkout branch in submodule
-        run: git checkout '${{github.event.client_payload.sha}}'
+        run: git checkout ${{github.event.client_payload.sha}}
       - name: Checkout submodules
         run: git submodule update --init --recursive
