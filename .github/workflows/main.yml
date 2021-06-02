@@ -2,17 +2,18 @@ name: Remote Dispatch Action Responder
  
 on: 
   push:
+  repository_dispatch:
  
 jobs:
   check-plugin:
     runs-on: ubuntu-latest
     steps:
+      - name: Event Information
+        run: |
+          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}' and branch name is '${{ github.event.branch.name }}'"
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           submodules: 'true'
       - name: Checkout submodules
         run: git submodule update --init --recursive
-      - name: Event Information
-        run: |
-         echo "Event '${{ github.event.client_payload.repository }}' received from '${{ github.event.client_payload.repository }}'"
