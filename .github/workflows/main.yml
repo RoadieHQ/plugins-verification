@@ -1,13 +1,16 @@
 name: Remote Dispatch Action Responder
  
-on: [repository_dispatch]
+on: 
+  push:
  
 jobs:
   check-plugin:
     runs-on: ubuntu-latest
       steps:
       - name: Checkout repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
       - name: Checkout submodules
         uses: plugins-verification/git-checkout-submodule-action@master
       - uses: actions/checkout@${{ github.event.check_suite[head_branch] }}
@@ -16,22 +19,3 @@ jobs:
       - name: Event Information
         run: |
           echo "Event '${{ github.event.check_suite[head_branch] }}' received from '${{ github.event.client_payload.repository }}'"
-      - name: RESPONSE - Dispatch response to received call
-        if: github.event.action == 'call'
-        run: |
-          curl -X POST https://api.github.com/repos/RoadieHQ/backstage-plugin-github-insights/dispatches \
-          -H 'Accept: application/vnd.github.everest-preview+json' \
-          -u ${{ secrets.ACCESS_TOKEN }} \
-          --data '{"event_type": "response", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
-      
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-        if: github.event.action == 'call'
-      - run: yarn install
-      - run: yarn run lint
-      - run: yarn run build
-      - run: yarn test
-        env:
-          CI: true
