@@ -16,6 +16,6 @@ jobs:
         with:
           submodules: 'true'
       - name: Checkout branch in submodule
-        uses: textbook/git-checkout-submodule-action@main-workflow-test-strategy
+        uses: textbook/git-checkout-submodule-action@master
       - name: Checkout submodules
         run: git submodule update --init --recursive
