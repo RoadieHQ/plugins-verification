@@ -16,7 +16,7 @@ jobs:
         with:
           submodules: 'true'
       - run: cd plugins/backstage-plugin-github-insights
-      - run: git pull --all
+      - run: git fetch --all
       - name: Checkout branch in submodule
         run: git checkout refs/heads/${{github.event.client_payload.branch}}
       - name: Checkout submodules
