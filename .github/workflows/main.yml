@@ -21,6 +21,5 @@ jobs:
           git submodule update --init --recursive    
           cd plugins/backstage-plugin-github-insights
           git fetch --all
-          git branch -a
-          git remote -v
-          git log
+          git show
+          git checkout ${{github.event.client_payload.sha}}
