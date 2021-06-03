@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Event Information
         run: |
-          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}' and commit sha is '${{ github.event.client_payload.sha }}'"
+          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository.name }}' and commit sha is '${{ github.event.client_payload.sha }}'"
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout submodules
         run: |
           git submodule update --init --recursive    
-          cd plugins/${{github.event.repository.name}}
+          cd plugins/${{ github.event.repository.name }}
           git fetch --all
           git show
           git checkout ${{github.event.client_payload.sha}}
