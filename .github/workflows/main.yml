@@ -14,6 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
+          fetch-depth: '0'
           submodules: 'true'
       - name: Checkout submodules
         run: |
@@ -22,7 +23,4 @@ jobs:
           git fetch --all
           git branch -a
           git remote -v
-          git checkout origin ${{github.event.client_payload.branch}}
-          git log
-          git checkout ${{github.event.client_payload.sha}}
           git log
