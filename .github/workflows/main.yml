@@ -20,6 +20,8 @@ jobs:
       - run: cd plugins/backstage-plugin-github-insights
       - name: Fetch branches
         run: git fetch --all
+      - name: Get branches
+        run: git branch -a
       - run: git checkout origin/${{github.event.client_payload.branch}}
       - name: Checkout commit in submodule
         run: git checkout ${{github.event.client_payload.sha}}
