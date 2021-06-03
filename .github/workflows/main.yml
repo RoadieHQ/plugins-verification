@@ -1,7 +1,6 @@
 name: Remote Dispatch Action Responder
  
 on: 
-  push:
   repository_dispatch:
  
 jobs:
@@ -11,6 +10,7 @@ jobs:
       - name: Event Information
         run: |
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}' and commit sha is '${{ github.event.client_payload.sha }}'"
+        if: github.event.action == 'call'
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
@@ -23,3 +23,8 @@ jobs:
           git fetch --all
           git show
           git checkout ${{github.event.client_payload.sha}}
+      - run: |
+          curl -X POST https://api.github.com/repos/RoadieHQ/${{ github.event.client_payload.repository }}/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.ACCESS_TOKEN }} \
+          --data '{"event_type": "response", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
