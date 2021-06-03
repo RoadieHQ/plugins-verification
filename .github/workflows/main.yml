@@ -1,6 +1,7 @@
 name: Remote Dispatch Action Responder
  
 on: 
+  push:
   repository_dispatch:
  
 jobs:
@@ -23,6 +24,7 @@ jobs:
           git fetch --all
           git show
           git checkout ${{github.event.client_payload.sha}}
+          yarn run test:e2e-docker
       - run: |
           curl -X POST https://api.github.com/repos/RoadieHQ/${{ github.event.client_payload.repository }}/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
