@@ -19,7 +19,7 @@ jobs:
       - name: Checkout submodules
         run: |
           git submodule update --init --recursive    
-          cd plugins/backstage-plugin-github-insights
+          cd plugins/${{github.event.repository.name}}
           git fetch --all
           git show
           git checkout ${{github.event.client_payload.sha}}
