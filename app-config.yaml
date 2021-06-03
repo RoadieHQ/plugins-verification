@@ -64,6 +64,9 @@ catalog:
     - type: url
       target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
 
+    - type: url
+      target: https://github.com/RoadieHQ/sample-service/blob/main/catalog-info-5.yaml
+
     # Backstage example systems
     - type: url
       target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-systems.yaml

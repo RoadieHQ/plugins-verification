@@ -7,6 +7,8 @@ on:
 jobs:
   check-plugin:
     runs-on: ubuntu-latest
+    env:
+     CI: true
     steps:
       - name: Event Information
         run: |
@@ -24,7 +26,11 @@ jobs:
           git fetch --all
           git show
           git checkout ${{github.event.client_payload.sha}}
-          yarn run test:e2e-docker
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          build: yarn run build
+          start: yarn run serve --port 3000
       - run: |
           curl -X POST https://api.github.com/repos/RoadieHQ/${{ github.event.client_payload.repository }}/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
