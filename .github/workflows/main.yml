@@ -20,5 +20,5 @@ jobs:
       - name: Checkout submodules
         run: git submodule update --init --recursive
       - name: Checkout commit in submodule
-        run: git checkout ${{github.event.client_payload.sha}}
+        run: git checkout d03513696bade450d5c4af1439cb82a7e34c2a33
    
