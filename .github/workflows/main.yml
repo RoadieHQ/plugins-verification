@@ -16,13 +16,14 @@ jobs:
         with:
           submodules: 'true'
       - name: Checkout submodules
-        run: git submodule update --init --recursive    
-      - run: cd plugins/backstage-plugin-github-insights
-      - name: Fetch branches
-        run: git fetch --all
-      - name: Get branches
-        run: git branch -a
-      - run: git checkout origin/${{github.event.client_payload.branch}}
+        run: |
+          git submodule update --init --recursive    
+          cd plugins/backstage-plugin-github-insights
+          git fetch --all
+          git branch -a
+          git remote -v
+          git checkout origin/${{github.event.client_payload.branch}}
+          git log
       - name: Checkout commit in submodule
         run: git checkout ${{github.event.client_payload.sha}}
    
