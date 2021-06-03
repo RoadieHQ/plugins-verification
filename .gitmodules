@@ -1,5 +1,6 @@
 [submodule "plugins/backstage-plugin-github-insights"]
 	path = plugins/backstage-plugin-github-insights
+	fetch = +refs/heads/*:refs/remotes/origin/*
 	url = https://github.com/RoadieHQ/backstage-plugin-github-insights.git
 [submodule "plugins/backstage-plugin-datadog"]
 	path = plugins/backstage-plugin-datadog
