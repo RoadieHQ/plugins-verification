@@ -22,8 +22,7 @@ jobs:
           git fetch --all
           git branch -a
           git remote -v
-          git checkout origin/${{github.event.client_payload.branch}}
+          git checkout origin ${{github.event.client_payload.branch}}
           git log
-      - name: Checkout commit in submodule
-        run: git checkout ${{github.event.client_payload.sha}}
-   
+          git checkout ${{github.event.client_payload.sha}}
+          git log
